@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SupportSync AI | Showcase ARB</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dark-mode">
+    <nav class="glass-nav">
+        <div class="container">
+            <a href="../index.html" class="logo">ARB<span>.dev</span></a>
+            <a href="../index.html#projects" class="btn-back">← Voltar ao Portfólio</a>
+        </div>
+    </nav>
+
+    <main class="dashboard container">
+        <header class="dash-header">
+            <h1>SupportSync AI</h1>
+            <p>Triagem Inteligente, Kanban de Incidentes e Análise Proativa</p>
+        </header>
+
+        <!-- Pattern Alert Banner -->
+        <div id="pattern-alert" class="pattern-alert hidden">
+            <span class="alert-icon">⚠️</span>
+            <span id="pattern-message">Padrão detectado: <strong>3 tickets de "Login"</strong> nas últimas 2 horas.
+                Investigar possível problema de autenticação.</span>
+            <button id="dismiss-alert" class="dismiss-btn">×</button>
+        </div>
+
+        <div class="dash-grid-v2">
+            <!-- Ticket Form -->
+            <section class="card ticket-form-card">
+                <h3>🎫 Abrir Novo Chamado</h3>
+                <form id="ticket-form">
+                    <div class="form-group">
+                        <label for="user">Usuário/Sistema Afetado</label>
+                        <input type="text" id="user" placeholder="Ex: Portal Financeiro" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descrição do Incidente</label>
+                        <textarea id="description" rows="3" placeholder="Descreva o problema..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Classificar com IA</button>
+                </form>
+            </section>
+
+            <!-- Live Stats -->
+            <section class="card stats-card">
+                <h3>📊 Métricas em Tempo Real</h3>
+                <div class="stat-item"><span>Uptime</span><span class="value success">99.2%</span></div>
+                <div class="stat-item"><span>Tickets Hoje</span><span id="triagens-count" class="value">14</span></div>
+                <div class="stat-item"><span>Críticos Abertos</span><span id="critical-count"
+                        class="value danger">2</span></div>
+            </section>
+
+            <!-- Kanban Board (NEW!) -->
+            <section class="card kanban-card">
+                <h3>📋 Kanban de Incidentes (estilo Jira)</h3>
+                <div class="kanban-board">
+                    <div class="kanban-column" id="col-aberto">
+                        <h4>🔴 Aberto</h4>
+                        <div class="kanban-items" data-status="aberto"></div>
+                    </div>
+                    <div class="kanban-column" id="col-analise">
+                        <h4>🟡 Em Análise</h4>
+                        <div class="kanban-items" data-status="analise"></div>
+                    </div>
+                    <div class="kanban-column" id="col-concluido">
+                        <h4>🟢 Concluído</h4>
+                        <div class="kanban-items" data-status="concluido"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Log Viewer (NEW!) -->
+            <section class="card log-card">
+                <h3>🔍 Visualizador de Logs (Simulação)</h3>
+                <div class="log-viewer" id="log-viewer">
+                    <pre><code>[2026-02-07 12:00:01] INFO  - AuthService: Usuário 'joao.silva' autenticado com sucesso.
+[2026-02-07 12:00:05] WARN  - PaymentGateway: Timeout ao conectar com banco externo (3s).
+[2026-02-07 12:00:12] ERROR - APIIntegration: Falha na resposta do endpoint /v2/boletos (HTTP 503).
+[2026-02-07 12:00:18] INFO  - TicketService: Novo ticket #1042 criado por 'maria.financeiro'.
+[2026-02-07 12:00:25] ERROR - AuthService: Falha de login para 'pedro.suporte' (senha incorreta).</code></pre>
+                </div>
+            </section>
+
+            <!-- SQL Query Demo (NEW!) -->
+            <section class="card sql-card">
+                <h3>🗃️ Consulta SQL (Demonstração)</h3>
+                <div class="sql-demo">
+                    <textarea id="sql-input" class="sql-input"
+                        rows="3">SELECT sistema, COUNT(*) as total FROM tickets WHERE status = 'Crítico' GROUP BY sistema ORDER BY total DESC;</textarea>
+                    <button id="run-sql" class="btn btn-primary btn-small">▶ Executar Query</button>
+                    <div id="sql-result" class="sql-result">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>sistema</th>
+                                    <th>total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Portal Financeiro</td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>API Integrações</td>
+                                    <td>3</td>
+                                </tr>
+                                <tr>
+                                    <td>RH Online</td>
+                                    <td>1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- B.I. Chart -->
+            <section class="card bi-card">
+                <h3>📈 B.I. - Incidentes por Sistema (30 dias)</h3>
+                <canvas id="supportChart"></canvas>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

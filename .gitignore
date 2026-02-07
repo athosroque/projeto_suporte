@@ -1,0 +1,16 @@
+# Dependências
+node_modules/
+__pycache__/
+*.pyc
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Build
+dist/
+.azure/
+
+# Logs
+*.log
