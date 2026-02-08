@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Movie Recommender | Athos Roque Barros</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Code Highlight Placeholder or simple styling -->
+    <style>
+        .text-accent {
+            color: var(--primary);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body class="dark-mode">
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="container">
+            <a href="index.html" class="logo">ARB<span>.dev</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="about.html">Sobre</a></li>
+                <li><a href="projects.html" class="active">Projetos</a></li>
+                <li><a href="contact.html">Contato</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Page Header (Banner Jus IA Style) -->
+    <header class="page-header" style="background: linear-gradient(90deg, #6366F1 0%, #8B5CF6 100%);"></header>
+
+    <main class="container page-title-section">
+        <h1 class="fade-in">Recomendador de Filmes para Vencer a Fadiga de Decisão</h1>
+        <p class="fade-in" style="color: var(--text-muted); margin-bottom: 20px; font-size: 1.1rem; max-width: 800px;">
+            Como transformei sinopses e metadados em vetores matemáticos para criar um algoritmo de recomendação
+            inteligente.
+        </p>
+
+        <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 40px 0;">
+
+        <div class="page-layout">
+            <!-- Main Content Area -->
+            <div class="main-content fade-in">
+                <section id="desafio">
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 25px;">🧭 O Desafio: De Textos
+                        Brutos a Sugestões Inteligentes</h2>
+                    <p>
+                        O coração de um recomendador está na capacidade de entender a semelhança entre os itens. Mas
+                        como ensinar um computador que <span class="text-accent">Batman: O Cavaleiro das Trevas</span> é
+                        parecido com <span class="text-accent">Coringa</span>, mas diferente de <span
+                            class="text-accent">Toy Story</span>?
+                    </p>
+                    <p>
+                        A resposta curta: <span class="text-accent">Processamento de Linguagem Natural (NLP)</span>.
+                    </p>
+                </section>
+
+                <section id="ruido">
+                    <h3 style="margin: 40px 0 20px; font-size: 1.5rem;">1. Limpando o "Ruído"</h3>
+                    <p>
+                        Antes de qualquer cálculo, precisei "lavar" os dados. Sinopses estão cheias de palavras como
+                        "o", "a", "em", "de" (as chamadas stopwords). Elas são essenciais para nós, humanos, mas para o
+                        algoritmo são apenas ruído.
+                    </p>
+                    <p>
+                        Criei um pipeline modular que remove pontuações, converte tudo para minúsculas e filtra essas
+                        palavras desnecessárias:
+                    </p>
+                    <pre><code>def limpar_e_tokenizar(texto):
+    if not isinstance(texto, str):
+        return ""
+    # Remove pontuação via Regex
+    texto_limpo = re.sub(r'[^\w\s]', '', texto)
+    # Minúsculas e remoção de Stopwords
+    palavras = texto_limpo.lower().split()
+    palavras_limpas = [w for w in palavras if w not in stop_words]
+    return " ".join(palavras_limpas)</code></pre>
+                </section>
+
+                <section id="digitalizando">
+                    <h2 class="text-3xl font-bold mb-6">2. Digitalizando o Gosto: O Algoritmo TF-IDF</h2>
+                    <p>
+                        Para o computador entender o texto, usei o <span class="text-accent">TF-IDF (Term
+                            Frequency-Inverse Document Frequency)</span>.
+                    </p>
+                    <p>
+                        Imagine que a palavra "faca" aparece muito em filmes de terror, mas raramente em comédias
+                        românticas. O TF-IDF dá um peso maior para palavras que são raras no catálogo geral, mas
+                        frequentes naquela sinopse específica.
+                    </p>
+                    <pre><code>from sklearn.feature_extraction.text import TfidfVectorizer
+
+tfidf = TfidfVectorizer(stop_words='english')
+tfidf_matrix = tfidf.fit_transform(df['overview_clean'])</code></pre>
+                    <p>
+                        Isso cria uma espécie de "impressão digital" para cada filme no nosso espaço vetorial.
+                    </p>
+                </section>
+
+                <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 60px 0;">
+
+                <section id="sopa">
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 25px;">🍲 A "Sopa de Metadados":
+                        Indo Além da Sinopse</h2>
+                    <p>
+                        Só a sinopse não é suficiente. Às vezes, você não quer um filme sobre o mesmo tema, mas sim um
+                        filme do mesmo diretor ou com seus atores favoritos.
+                    </p>
+                    <p style="margin-bottom: 10px;">Evoluí o projeto para criar o que chamei de <span
+                            class="text-accent">Metadata Soup</span> (Sopa de Metadados). Misturei:</p>
+                    <ul style="margin-bottom: 20px; padding-left: 20px;">
+                        <li>Os 3 atores principais</li>
+                        <li>O Diretor</li>
+                        <li>Palavras-chave (Keywords)</li>
+                        <li>Gêneros</li>
+                    </ul>
+                    <h4 style="margin-bottom: 15px;">Por que CountVectorizer aqui?</h4>
+                    <p>
+                        Diferente do TF-IDF, para nomes de atores e diretores, não queremos penalizar palavras
+                        frequentes. Se o Tom Hanks está em muitos filmes, isso é um sinal forte de conexão! Por isso,
+                        mudamos o algoritmo para o <span class="text-accent">CountVectorizer</span>, que foca na
+                        presença pura e simples desses elementos.
+                    </p>
+                </section>
+
+                <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 60px 0;">
+
+                <section id="resultado">
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 25px;">🎯 Resultado: Matemática
+                        que Faz Sentido</h2>
+                    <p>
+                        Ao final, o sistema calcula a <span class="text-accent">Similaridade de Cosseno</span> — uma
+                        conta matemática que mede o quão próximos dois filmes estão no "espaço" de preferências.
+                    </p>
+                    <pre><code>from sklearn.metrics.pairwise import cosine_similarity
+
+# Calcula o quão próximo cada filme está de todos os outros
+similaridade = cosine_similarity(vetores)
+
+# Pega os filmes com maior pontuação para a recomendação
+sim_scores = sorted(list(enumerate(similarity[idx])), 
+                    key=lambda x: x[1], 
+                    reverse=True)</code></pre>
+                    <p>
+                        Se eu procuro por <span class="text-accent">Inception</span>, o sistema não olha apenas para a
+                        palavra "sonho", mas sim para a combinação única de <span class="text-accent">Sci-Fi +
+                            Christopher Nolan + Leonardo DiCaprio</span>.
+                    </p>
+                </section>
+
+                <section id="importancia">
+                    <h2 class="section-title" style="text-align: left; margin: 60px 0 25px;">💡 Por que isso importa na
+                        vida real?</h2>
+                    <p style="margin-bottom: 20px;">
+                        Sistemas como este estão em todo lugar: Spotify, Netflix, Amazon. Entender a lógica por trás
+                        deles nos faz perceber que a personalização não é mágica, é <span
+                            class="text-accent">engenharia</span>.
+                    </p>
+                    <section id="resumo">
+                        <div
+                            style="background: var(--bg-secondary); padding: 30px; border-radius: 12px; border: 1px solid var(--glass-border); margin-top: 40px;">
+                            <p style="font-style: italic; margin-bottom: 20px; color: var(--text-muted);">
+                                "Qual foi a última recomendação de um algoritmo que realmente te surpreendeu?"
+                            </p>
+                            <a href="https://github.com/athosroque/-Movie-Recommender-System-MLOps" target="_blank"
+                                class="btn btn-primary">Confira o código no GitHub</a>
+                        </div>
+                    </section>
+            </div>
+
+            <!-- Table of Contents Sidebar -->
+            <aside class="toc-sidebar">
+                <div class="toc-title">Nesta Página</div>
+                <ul class="toc-links">
+                    <li><a href="#desafio" class="active">O Desafio</a></li>
+                    <li><a href="#ruido">Limpando o Ruído</a></li>
+                    <li><a href="#digitalizando">TF-IDF Algoritmo</a></li>
+                    <li><a href="#sopa">Sopa de Metadados</a></li>
+                    <li><a href="#resultado">Resultado Matemático</a></li>
+                    <li><a href="#importancia">Por que importa?</a></li>
+                </ul>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Athos Roque Barros. Todo o conteúdo técnico disponível no <strong>GitHub</strong>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

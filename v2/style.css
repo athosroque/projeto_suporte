@@ -1,0 +1,279 @@
+:root {
+    --bg-primary: #FAFAFA;
+    --text-primary: #1A1A1A;
+    --text-secondary: #4A4A4A;
+    --accent-color: #00457C;
+    /* Jusbrasil Blue */
+    --accent-light: #E1E8EE;
+    --border-color: #E2E8F0;
+    --font-serif: 'Lora', serif;
+    --font-sans: 'Inter', sans-serif;
+    --container-width: 1100px;
+    --sidebar-width: 240px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Navigation */
+.top-nav {
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+.nav-cta {
+    background: var(--accent-color);
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+/* Layout */
+.main-layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    gap: 4rem;
+    margin-top: 4rem;
+    margin-bottom: 8rem;
+}
+
+/* Sidebar */
+.sidebar-sticky {
+    position: sticky;
+    top: 6rem;
+}
+
+.toc h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.toc ul {
+    list-style: none;
+}
+
+.toc a {
+    display: block;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    border-right: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.toc a.active {
+    color: var(--accent-color);
+    font-weight: 600;
+    border-right-color: var(--accent-color);
+}
+
+/* Page Content */
+.page-title {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: #000;
+}
+
+.intro-text {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 65ch;
+    margin-bottom: 2rem;
+}
+
+.section {
+    margin-bottom: 5rem;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.meta-info {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Experience Cards */
+.exp-item {
+    margin-bottom: 2.5rem;
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.exp-role {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.exp-company {
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.exp-period {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.exp-list {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.exp-list li {
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.exp-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* Spec Grid */
+.spec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.spec-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.spec-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.spec-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.spec-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+/* Contact Links */
+.contact-links {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.contact-links a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.2s;
+}
+
+.contact-links a:hover {
+    border-bottom-color: var(--accent-color);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+    }
+}

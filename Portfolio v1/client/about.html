@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Mim | Athos Roque Barros</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="dark-mode">
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="container">
+            <a href="index.html" class="logo">ARB<span>.dev</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="about.html" class="active">Sobre</a></li>
+                <li><a href="projects.html">Projetos</a></li>
+                <li><a href="contact.html">Contato</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Page Header (Banner Jus IA) -->
+    <header class="page-header"></header>
+
+    <main class="container page-title-section">
+        <h1>Sobre Mim</h1>
+
+
+        <div class="page-layout">
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <section id="bio">
+
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 25px; color: var(--text-muted);">
+                        Especialista técnico no uso de ferramentas para auxílio no troubleshooting de incidentes.
+                        Entusiasta de ML, algoritmos e análises estatísticas.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 25px; color: var(--text-muted);">
+                        Neste portfólio, foco em demonstrar ferramentas e pipelines para conectar o backend ao frontend,
+                        desde o planejamento e extração de dados até a geração e apresentação de insights.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 25px; color: var(--text-muted);">
+                        Minha abordagem combina o rigor analítico da estatística com a agilidade das soluções em nuvem,
+                        permitindo a criação de sistemas que não apenas processam dados, mas contam histórias e resolvem
+                        gargalos operacionais críticos.
+                    </p>
+                </section>
+
+                <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 20px 0;">
+
+                <section id="skills">
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Competências Técnicas</h2>
+                    <div class="skills-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                        <div class="skill-category">
+                            <h3>Machine Learning & AI</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">NLP (Modelos de Linguagem)
+                                </li>
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">Classificação & Regressão
+                                </li>
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">Detecção de Padrões</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Engenharia de Dados</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">Pipelines ETL/ELT</li>
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">Modelagem Star Schema</li>
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">Integração de APIs</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Cloud & Infra</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">Azure Cloud Services</li>
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">Docker & Containers</li>
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">Monitoramento de Logs</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Ferramentas & Ecossistema</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">Python, Postman & Metabase
+                                </li>
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">Redash SQL & Jira</li>
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">GitHub, Slack & Notion</li>
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">Oracle Cloud & VM's</li>
+                                <li style="margin-bottom: 10px; color: var(--text-muted);">Antigravity (Google)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Table of Contents Sidebar -->
+            <aside class="toc-sidebar">
+                <div class="toc-title">Nesta Página</div>
+                <ul class="toc-links">
+                    <li><a href="#bio" class="active">Sobre Mim</a></li>
+                    <li><a href="#skills">Competências Técnicas</a></li>
+                </ul>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Athos Roque Barros. Todos os direitos reservados.</p>
+                <p>Hospedado no <strong>Azure Static Web Apps</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

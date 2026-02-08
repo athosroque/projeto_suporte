@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Projetos de Athos Roque Barros - Machine Learning, Business Intelligence e Cloud Computing">
+    <title>Projetos | Athos Roque Barros</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dark-mode">
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="container">
+            <a href="index.html" class="logo">ARB<span>.dev</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="about.html">Sobre</a></li>
+                <li><a href="projects.html" class="active">Projetos</a></li>
+                <li><a href="contact.html">Contato</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Page Header (Banner Jus IA) -->
+    <header class="page-header" style="background: linear-gradient(90deg, #F59E0B 0%, #D97706 100%);"></header>
+
+    <main class="container page-title-section">
+        <h1 class="fade-in">Meu Portfólio</h1>
+        <p class="fade-in" style="color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem; max-width: 700px;">
+            Uma coleção de sistemas desenvolvidos para resolver problemas complexos através de dados,
+            machine learning e infraestrutura em nuvem.
+        </p>
+
+        <section id="projects" class="projects" style="padding-top: 0;">
+            <div class="project-grid">
+                <!-- SupportData -->
+                <div class="project-card showcase">
+                    <div class="card-badge">PROJETO DESTAQUE</div>
+                    <div class="card-header">
+                        <h3><a href="https://github.com/athosroque/supportsync" target="_blank"
+                                style="text-decoration: none; color: inherit;">🤖 SupportData</a></h3>
+                    </div>
+                    <p class="card-description">
+                        Sistema inteligente de triagem de tickets com IA, dashboard Kanban e análise de logs em tempo
+                        real. Desenvolvido para otimizar o fluxo de atendimento técnico e troubleshooting.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Azure</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">NLP</span>
+                    </div>
+                    <a href="support-sync/index.html" class="btn btn-small">Ver Demonstração</a>
+                </div>
+
+                <!-- Movie Recommender -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>🎬 Movie Recommender</h3>
+                    </div>
+                    <p class="card-description">
+                        Pipeline MLOps completo para recomendação de filmes. Inclui extração de dados, pré-processamento
+                        NLP e deploy de API.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">MLOps</span>
+                        <span class="tag">NLP</span>
+                        <span class="tag">FastAPI</span>
+                    </div>
+                    <a href="movie-recommender.html" class="btn btn-small">Ver Projeto</a>
+                </div>
+
+                <!-- Portal da Transparência -->
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>📊 Transparência BI</h3>
+                    </div>
+                    <p class="card-description">
+                        Análise de dados públicos com pipeline ETL robusto, integrando agentes inteligentes para
+                        insights automáticos.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">ELT</span>
+                        <span class="tag">PostgreSQL</span>
+                    </div>
+                    <a href="https://github.com/athosroque/bolsa_familia" target="_blank" class="btn btn-small">Ver no
+                        GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Athos Roque Barros. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

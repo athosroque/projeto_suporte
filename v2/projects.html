@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos | Athos Roque Barros</title>
+    <meta name="description" content="Estudos de caso reais de infraestrutura, dados e IA.">
+    <meta property="og:title" content="Projetos | Athos Roque Barros" />
+    <meta property="og:description" content="Estudos de caso reais de infraestrutura, dados e IA." />
+    <meta property="og:type" content="website" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="projects.css">
+</head>
+
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="logo">ARB<span>.infra</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Apresentação</a></li>
+                <li><a href="projects.html" class="active">Projetos</a></li>
+            </ul>
+            <a href="https://github.com/athosroque" target="_blank" class="nav-cta">GitHub</a>
+        </div>
+    </nav>
+
+    <div class="main-layout container">
+        <aside class="sidebar">
+            <div class="sidebar-sticky">
+                <nav class="toc">
+                    <h3>Projetos Selecionados</h3>
+                    <ul id="project-toc">
+                        <!-- Dinamicamente preenchido -->
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <main class="content-area">
+            <h1 class="page-title">Estudos de Caso & Resultados</h1>
+            <p class="intro-text">
+                Uma seleção de projetos focados em resolver desafios reais de infraestrutura e negócios através de
+                tecnologia e dados.
+            </p>
+
+            <div id="projects-container">
+                <!-- Dinamicamente preenchido -->
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="projects-script.js"></script>
+</body>
+
+</html>

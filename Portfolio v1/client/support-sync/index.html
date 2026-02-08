@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="SuporteData - Sistema inteligente de triagem de tickets com IA para suporte de TI">
+    <meta property="og:title" content="SuporteData | Dashboard de Suporte Inteligente" />
+    <meta property="og:description"
+        content="Sistema inteligente de triagem de tickets com IA para operações de suporte de TI." />
+    <meta property="og:type" content="website" />
+    <title>SuporteData | Dashboard de Suporte Inteligente</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dark-mode">
+    <nav class="glass-nav">
+        <div class="container">
+            <a href="../index.html" class="logo">ARB<span>.data</span></a>
+            <div class="nav-center">
+                <span class="nav-title">🤖 SuporteData</span>
+            </div>
+            <a href="../index.html#projects" class="btn-back">← Voltar ao Portfólio</a>
+        </div>
+    </nav>
+
+    <main class="dashboard container">
+        <header class="dash-header">
+            <div class="header-content">
+                <h1>SuporteData</h1>
+                <p class="dash-subtitle">Sistema de Triagem Inteligente • Kanban ITSM • Análise de Logs • Detecção de
+                    Padrões</p>
+            </div>
+            <div class="header-badges">
+                <span class="badge live">● Live</span>
+                <span class="badge">Educbank Context</span>
+            </div>
+        </header>
+
+        <!-- Pattern Alert Banner -->
+        <div id="pattern-alert" class="pattern-alert hidden">
+            <span class="alert-icon">⚠️</span>
+            <span id="pattern-message">Padrão detectado: Múltiplos tickets similares identificados.</span>
+            <button id="dismiss-alert" class="dismiss-btn">×</button>
+        </div>
+
+        <!-- Stats Bar -->
+        <section class="stats-bar">
+            <div class="stat-box">
+                <span class="stat-value" id="triagens-count">0</span>
+                <span class="stat-label">Total Tickets</span>
+            </div>
+            <div class="stat-box critical">
+                <span class="stat-value" id="critical-count">0</span>
+                <span class="stat-label">Críticos Abertos</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-value success">99.2%</span>
+                <span class="stat-label">Uptime</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-value">
+                    < 2h</span>
+                        <span class="stat-label">Tempo Médio Resp.</span>
+            </div>
+            <div class="stat-box export-box">
+                <button id="export-excel" class="btn-export">
+                    <span>📊</span> Exportar XLS
+                </button>
+            </div>
+        </section>
+
+        <div class="dash-grid-v2">
+            <!-- Ticket Form -->
+            <section class="card ticket-form-card">
+                <h3>🎫 Abrir Novo Chamado</h3>
+                <form id="ticket-form">
+                    <div class="form-group">
+                        <label for="user">Escola / Sistema Afetado</label>
+                        <input type="text" id="user" placeholder="Ex: Colégio São Paulo - Portal Família" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descrição do Incidente</label>
+                        <textarea id="description" rows="3" placeholder="Descreva o problema detalhadamente..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-icon">🤖</span> Classificar com IA
+                    </button>
+                </form>
+            </section>
+
+            <!-- Log Viewer -->
+            <section class="card log-card">
+                <div class="card-header-row">
+                    <h3>🔍 Logs do Sistema</h3>
+                    <span class="log-status">Real-time</span>
+                </div>
+                <div class="log-viewer" id="log-viewer">
+                    <code></code>
+                </div>
+            </section>
+
+            <!-- Kanban Board -->
+            <section class="card kanban-card">
+                <h3>📋 Kanban ITSM (Drag & Drop)</h3>
+                <div class="kanban-board">
+                    <div class="kanban-column" id="col-aberto">
+                        <h4>🔴 Aberto <span class="count" id="count-aberto"></span></h4>
+                        <div class="kanban-items" data-status="aberto"></div>
+                    </div>
+                    <div class="kanban-column" id="col-analise">
+                        <h4>🟡 Em Análise <span class="count" id="count-analise"></span></h4>
+                        <div class="kanban-items" data-status="analise"></div>
+                    </div>
+                    <div class="kanban-column" id="col-concluido">
+                        <h4>🟢 Concluído <span class="count" id="count-concluido"></span></h4>
+                        <div class="kanban-items" data-status="concluido"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SQL Query Demo -->
+            <section class="card sql-card">
+                <h3>🗃️ Consulta SQL Interativa</h3>
+                <p class="card-hint">Execute queries reais contra a base de tickets. Suporta SELECT, WHERE, GROUP BY,
+                    ORDER BY, LIMIT.</p>
+                <div class="sql-demo">
+                    <div class="sql-examples">
+                        <button class="sql-example-btn"
+                            data-query="SELECT * FROM tickets WHERE priority = 'Crítico' LIMIT 5">Tickets
+                            Críticos</button>
+                        <button class="sql-example-btn"
+                            data-query="SELECT system, COUNT(*) as total FROM tickets GROUP BY system ORDER BY total DESC">Por
+                            Sistema</button>
+                        <button class="sql-example-btn"
+                            data-query="SELECT category, COUNT(*) as total FROM tickets GROUP BY category">Por
+                            Categoria</button>
+                    </div>
+                    <textarea id="sql-input" class="sql-input" rows="3"
+                        placeholder="SELECT * FROM tickets WHERE status = 'aberto'">SELECT system, COUNT(*) as total FROM tickets WHERE status = 'aberto' GROUP BY system ORDER BY total DESC</textarea>
+                    <button id="run-sql" class="btn btn-primary btn-small">
+                        <span>▶</span> Executar (Ctrl+Enter)
+                    </button>
+                    <div id="sql-result" class="sql-result"></div>
+                </div>
+            </section>
+
+            <!-- B.I. Charts Row -->
+            <section class="card bi-card">
+                <div class="charts-row">
+                    <div class="chart-box">
+                        <h3>📈 Dashboard B.I. - Distribuição por Sistema</h3>
+                        <div class="chart-container">
+                            <canvas id="supportChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-box">
+                        <h3>🍕 Distribuição por Prioridade</h3>
+                        <div class="chart-container">
+                            <canvas id="priorityChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Feature Summary -->
+        <section class="features-summary">
+            <div class="feature-item">
+                <span class="feature-icon">🤖</span>
+                <div>
+                    <strong>Triagem IA</strong>
+                    <p>Classificação automática por prioridade, categoria e sistema usando NLP heurístico</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">📋</span>
+                <div>
+                    <strong>Kanban ITSM</strong>
+                    <p>Board estilo Jira com drag-and-drop entre status (Aberto → Análise → Concluído)</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🔍</span>
+                <div>
+                    <strong>Logs Real-time</strong>
+                    <p>Visualizador de logs do sistema com níveis INFO, WARN, ERROR</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🗃️</span>
+                <div>
+                    <strong>SQL Interativo</strong>
+                    <p>Execute queries SELECT, WHERE, GROUP BY, ORDER BY contra a base de tickets</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">⚠️</span>
+                <div>
+                    <strong>Detecção de Padrões</strong>
+                    <p>Alertas proativos quando múltiplos tickets similares são detectados</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">📊</span>
+                <div>
+                    <strong>Dashboard B.I.</strong>
+                    <p>Gráficos dinâmicos com Chart.js mostrando distribuição por sistema</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="support-footer">
+        <!-- Frontend Notice -->
+        <div class="frontend-notice">
+            <span class="notice-icon">ℹ️</span>
+            <div class="notice-content">
+                <strong>Demonstração Frontend-Only</strong>
+                <p>Este projeto roda 100% no navegador (JavaScript puro) sem backend. Implicações: dados não persistem
+                    após atualização da página, classificação IA usa heurística local (não ML real), e a base de tickets
+                    é simulada. Em produção, seria necessário: API backend, banco de dados, e modelos de ML treinados.
+                </p>
+            </div>
+        </div>
+        <p>💡 Demonstração técnica com <strong>50 tickets realistas</strong> baseados no contexto
+            <strong>Educbank</strong>
+        </p>
+        <p class="tech-stack">Stack: Vanilla JS • Chart.js • Azure Static Web Apps • NLP Heurístico</p>
+    </footer>
+
+    <script src="tickets-database.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
